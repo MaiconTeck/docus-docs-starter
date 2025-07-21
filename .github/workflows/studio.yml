@@ -55,6 +55,10 @@ jobs:
           version: ${{ matrix.node }}
           cache: ${{ steps.pkgman.outputs.cache }}
 
+      - name: Setup .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.TECK_TOKEN }}" > ~/.npmrc
+
       - name: Install dependencies
         run: ${{ steps.pkgman.outputs.package_manager }} install
 
